@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Calculadora Rustica</title>
+	
+</head>
+<body>
+	<h3 style="text-align: center;">Calculadora</h3>
+	<form action="">
+		<table  style="margin: 0 auto">
+			<tr>
+				<th>Operador</th>
+				<th>Operación</th>
+				<th>Operador</th>
+			</tr>
+			<tr>
+				<td><input type="number" name="ope1" id="ope1">
+				</td>
+				<td>
+				<input type="radio" name="operacion" value="+">
+				Suma <br>
+				<input type="radio" name="operacion" value="-">
+				Resta <br>
+				<input type="radio" name="operacion" value="*">
+				Multiplicación <br>
+				<input type="radio" name="operacion" value="/">
+				División <br>
+				<input type="radio" name="operacion" value="%">
+				Módulo
+				</td>
+				<td><input type="number" name="ope2" id="ope2"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: right;"><input type="button" value="Calcular" onclick="calcularOperacion();"></td>
+				<td><input type="text" name="resultado" id="resultado" disabled></td>
+			</tr>
+		</table>
+	</form>
+
+	<script>
+		function calcularOperacion() {
+			var ope1,ope2,operacion,radio,resultado;
+			ope1 = parseFloat(document.getElementById("ope1").value);
+			ope2 = parseFloat(document.getElementById("ope2").value);
+			/*alert("Valor ope1 " + ope1);*/
+			radio = document.getElementsByName("operacion");
+
+			for (var i = 0; i < radio.length; i++) {
+				if (radio[i].checked){
+					operacion = radio[i].value;
+				}
+			}
+
+			/*solo para ver que si se puede hacer//alert("Tipo de operacion " + operacion);*/
+			switch(operacion){
+				case "+": resultado = ope1 + ope2;
+					break;
+				case "-": resultado = ope1 - ope2;
+					break;
+				case "*": resultado = ope1 * ope2
+					break;
+
+				case "/":
+					if (ope2 != 0) {
+						resultado = ope1 / ope2;
+					}else {
+						resultado = "No se puede realizar"
+					}
+					break;
+
+				case "%":
+					if (ope2 != 0) {
+						 resultado = ope1 % ope2;
+					} else {
+						resultado = "No se puede realizar"
+					}
+				
+					break;
+					default:
+						resultado = "Operación no valida";
+			}
+			/*resultado = eva1(ope1+operacion+ope2);*/
+			document.getElementById("resultado").value = resultado;
+		}	
+	</script>
+</body>
+</html>
